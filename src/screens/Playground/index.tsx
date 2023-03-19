@@ -1,6 +1,6 @@
 import { FC } from "react";
 import * as El from "./styles";
-import { Layout, Space } from "antd";
+import { Button, Layout, Space } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { EntityCard } from "../../shared/components/EntityCard";
 import { useStores } from "../../shared/hooks/stores";
@@ -39,6 +39,12 @@ export const Playground: FC = observer(() => {
       name: "UserInfo",
     });
   };
+
+  const fightPreparingHandler = () => {
+    openModal({
+      name: "Initiative",
+    });
+  };
   return (
     <El.PlaygroundWrapper
       direction="vertical"
@@ -75,7 +81,9 @@ export const Playground: FC = observer(() => {
             </Space>
           </Content>
         </Layout>
-        <Footer style={footerStyle}>Footer</Footer>
+        <Footer style={footerStyle}>
+          <Button onClick={fightPreparingHandler}>Приготовиться к бою</Button>
+        </Footer>
       </Layout>
     </El.PlaygroundWrapper>
   );

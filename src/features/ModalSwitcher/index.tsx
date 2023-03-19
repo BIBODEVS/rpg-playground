@@ -1,19 +1,19 @@
 import React from "react";
-import { UserInfo } from "../UserInfo";
 import { useStores } from "../../shared/hooks/stores";
 import { OpenedModal, ModalComponent } from "../../app/stores/modals";
 import { observer } from "mobx-react-lite";
 import { Modal } from "antd";
+import { UserInfo } from "../UserInfo";
+import { Initiative } from "../Initiative";
 
 export const ModalSwitcher = observer(() => {
   const {
     modals: { modalQueue, closeModal },
   } = useStores();
 
-  console.log("modalqueue");
-
   const modal: ModalComponent = {
     UserInfo,
+    Initiative,
   };
 
   const openedModal: OpenedModal | undefined = modalQueue.find(
