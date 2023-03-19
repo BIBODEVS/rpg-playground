@@ -6,11 +6,21 @@ type UserCardProps = {
   name: string;
   health?: number;
   maxHealth?: number;
+  onClick?: () => void;
 };
 
-export const EntityCard: FC<UserCardProps> = ({ name, health, maxHealth }) => {
+export const EntityCard: FC<UserCardProps> = ({
+  name,
+  health,
+  maxHealth,
+  onClick,
+}) => {
   return (
-    <Card title={name} style={{ width: 300 }}>
+    <Card
+      title={name}
+      style={{ width: 300, cursor: "pointer" }}
+      onClick={onClick}
+    >
       {health && maxHealth && (
         <HealthMark value={health} maxValue={maxHealth} />
       )}

@@ -3,6 +3,8 @@ import * as El from "./styles";
 import { Layout, Space } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { EntityCard } from "../../shared/components/EntityCard";
+import { useStores } from "../../shared/hooks/stores";
+import { observer } from "mobx-react-lite";
 
 const headerStyle: React.CSSProperties = {
   textAlign: "center",
@@ -28,7 +30,15 @@ const footerStyle: React.CSSProperties = {
   backgroundColor: "#7dbcea",
 };
 
-export const Playground: FC = () => {
+export const Playground: FC = observer(() => {
+  const {
+    modals: { openModal },
+  } = useStores();
+  const handleEntityClick = () => {
+    openModal({
+      name: "UserInfo",
+    });
+  };
   return (
     <El.PlaygroundWrapper
       direction="vertical"
@@ -40,21 +50,24 @@ export const Playground: FC = () => {
           <Content style={contentStyle}>
             <Space direction="vertical">
               <Space>
-                <EntityCard name={"Виверна"} />
+                <EntityCard name={"Виверна"} onClick={handleEntityClick} />
               </Space>
               <Space>
                 <EntityCard
                   name={"Бутер Светоносный"}
+                  onClick={handleEntityClick}
                   health={12}
                   maxHealth={24}
                 />
                 <EntityCard
                   name={"Эльф Извращенец"}
+                  onClick={handleEntityClick}
                   health={20}
                   maxHealth={30}
                 />
                 <EntityCard
                   name={"Великолепный Бард"}
+                  onClick={handleEntityClick}
                   health={2}
                   maxHealth={18}
                 />
@@ -66,4 +79,4 @@ export const Playground: FC = () => {
       </Layout>
     </El.PlaygroundWrapper>
   );
-};
+});
