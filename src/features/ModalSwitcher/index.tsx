@@ -3,7 +3,7 @@ import { useStores } from "../../shared/hooks/stores";
 import { OpenedModal, ModalComponent } from "../../app/stores/modals";
 import { observer } from "mobx-react-lite";
 import { Modal } from "antd";
-import { UserInfo } from "../UserInfo";
+import { CharacterInfo } from "../CharacterInfo";
 import { Initiative } from "../Initiative";
 
 export const ModalSwitcher = observer(() => {
@@ -12,7 +12,7 @@ export const ModalSwitcher = observer(() => {
   } = useStores();
 
   const modal: ModalComponent = {
-    UserInfo,
+    CharacterInfo,
     Initiative,
   };
 

@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { RootStore } from "./index";
 import { FC } from "react";
-import { UserInfoProps } from "../../features/UserInfo";
+import { CharacterInfoProps } from "../../features/CharacterInfo";
 import { InitiativeProps } from "../../features/Initiative";
 
 export interface ModalData<ContentProps> {
@@ -10,12 +10,12 @@ export interface ModalData<ContentProps> {
 }
 
 export interface ModalComponent {
-  UserInfo: FC<ModalData<UserInfoProps>>;
+  CharacterInfo: FC<ModalData<CharacterInfoProps>>;
   Initiative: FC<ModalData<InitiativeProps>>;
 }
 
 export interface ModalComponentProps {
-  UserInfo: UserInfoProps;
+  CharacterInfo: CharacterInfoProps;
   Initiative: InitiativeProps;
 }
 

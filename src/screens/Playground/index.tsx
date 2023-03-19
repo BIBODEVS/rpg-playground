@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import * as El from "./styles";
 import { Button, Layout, Space } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
-import { EntityCard } from "../../shared/components/EntityCard";
+import { EntityCard } from "../../shared/components/CharacterCard";
 import { useStores } from "../../shared/hooks/stores";
 import { observer } from "mobx-react-lite";
 
@@ -33,52 +33,71 @@ const footerStyle: React.CSSProperties = {
 export const Playground: FC = observer(() => {
   const {
     modals: { openModal },
+    playground: {
+      loading,
+      setData,
+      masterCharacters,
+      playersCharacters,
+      stage,
+      setStage,
+    },
+    user: { role },
   } = useStores();
+
+  useEffect(() => {
+    setData();
+  }, []);
+
   const handleEntityClick = () => {
     openModal({
-      name: "UserInfo",
+      name: "CharacterInfo",
     });
   };
 
   const fightPreparingHandler = () => {
+    setStage("preparing");
     openModal({
       name: "Initiative",
     });
   };
+
+  const isMaster = role === "master";
+
+  if (loading) return <div>Loading</div>;
+
   return (
     <El.PlaygroundWrapper
       direction="vertical"
       style={{ width: "100%", minHeight: "100vh" }}
     >
-      <Layout>
+      <Layout style={{ height: "100vh" }}>
         <Header style={headerStyle}>Header</Header>
         <Layout>
           <Content style={contentStyle}>
-            <Space direction="vertical">
+            <El.Playfield isInvert={isMaster}>
               <Space>
-                <EntityCard name={"Виверна"} onClick={handleEntityClick} />
+                {masterCharacters.map((masterChar) => (
+                  <EntityCard
+                    key={masterChar.id}
+                    name={masterChar.name}
+                    onClick={handleEntityClick}
+                    health={12}
+                    maxHealth={masterChar.maxHealth}
+                  />
+                ))}
               </Space>
               <Space>
-                <EntityCard
-                  name={"Бутер Светоносный"}
-                  onClick={handleEntityClick}
-                  health={12}
-                  maxHealth={24}
-                />
-                <EntityCard
-                  name={"Эльф Извращенец"}
-                  onClick={handleEntityClick}
-                  health={20}
-                  maxHealth={30}
-                />
-                <EntityCard
-                  name={"Великолепный Бард"}
-                  onClick={handleEntityClick}
-                  health={2}
-                  maxHealth={18}
-                />
+                {playersCharacters.map((playerChar) => (
+                  <EntityCard
+                    key={playerChar.id}
+                    name={playerChar.name}
+                    onClick={handleEntityClick}
+                    health={12}
+                    maxHealth={playerChar.maxHealth}
+                  />
+                ))}
               </Space>
-            </Space>
+            </El.Playfield>
           </Content>
         </Layout>
         <Footer style={footerStyle}>

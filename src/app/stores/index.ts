@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { User } from "./user";
 import { Modals } from "./modals";
+import { Playground } from "./playground";
 
 export class RootStore {
   constructor() {
@@ -8,6 +9,7 @@ export class RootStore {
   }
   user = new User(this);
   modals = new Modals(this);
+  playground = new Playground(this);
 }
 
 export const rootStore = new RootStore();
