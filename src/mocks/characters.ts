@@ -1,39 +1,67 @@
-import { CharacterType } from "../ @types/characterType";
+import { SessionCharacterType } from "../ @types/characterType";
 
-export const MOCK_CHARACTERS: CharacterType[] = [
+const getHealthValue = () => {
+  const maxHealth = Math.round(Math.random() * 100);
+  let health = Math.round(Math.random() * 100);
+  if (health > maxHealth) health = maxHealth;
+  return { health, maxHealth };
+};
+
+export const MOCK_CHARACTERS: SessionCharacterType[] = [
   {
     id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
     name: "Бутер Светоносный",
-    maxHealth: 24,
+    ...getHealthValue(),
     inventory: [],
     type: "player",
+    initiative: 0,
   },
   {
     id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
     name: "Эльф Извращенец",
-    maxHealth: 30,
+    ...getHealthValue(),
     inventory: [],
     type: "player",
+    initiative: 0,
   },
   {
     id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
     name: "Великолепный Бард",
-    maxHealth: 12,
+    ...getHealthValue(),
     inventory: [],
     type: "player",
+    initiative: 0,
   },
   {
     id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
     name: "Хитрый Полурослик",
-    maxHealth: 15,
+    ...getHealthValue(),
     inventory: [],
     type: "player",
+    initiative: 0,
   },
   {
     id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
-    name: "Виверна",
-    maxHealth: 100,
+    name: "Гоблин 1",
+    ...getHealthValue(),
     inventory: [],
     type: "enemy",
+    initiative: 0,
+  },
+  {
+    id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
+    name: "Гоблин 2",
+    ...getHealthValue(),
+    inventory: [],
+    type: "enemy",
+    initiative: 0,
+  },
+  {
+    id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
+    name: "Гоблин 3",
+    ...getHealthValue(),
+    inventory: [],
+    type: "enemy",
+    initiative: 0,
   },
 ];

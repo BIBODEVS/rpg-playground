@@ -31,7 +31,7 @@ export const ModalSwitcher = observer(() => {
 
   return (
     <>
-      <Modal onCancel={handleClose} open={true}>
+      <Modal onCancel={handleClose} open={true} footer={null}>
         <OpenedModal data={data} onClose={handleClose} />
       </Modal>
     </>

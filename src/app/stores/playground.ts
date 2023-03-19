@@ -1,13 +1,13 @@
 import { ChildStore, RootStore } from "./index";
 import { makeAutoObservable } from "mobx";
-import { CharacterType } from "../../ @types/characterType";
+import { SessionCharacterType } from "../../ @types/characterType";
 import { MOCK_CHARACTERS } from "../../mocks/characters";
 
 type PlaygroundMode = "roleplay" | "preparing" | "fight";
 
 export class Playground implements ChildStore {
   stage: PlaygroundMode = "roleplay";
-  characters: CharacterType[] = [];
+  characters: SessionCharacterType[] = [];
   loading: boolean = true;
 
   constructor(public root: RootStore) {

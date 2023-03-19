@@ -81,7 +81,7 @@ export const Playground: FC = observer(() => {
                     key={masterChar.id}
                     name={masterChar.name}
                     onClick={handleEntityClick}
-                    health={12}
+                    health={masterChar.health}
                     maxHealth={masterChar.maxHealth}
                   />
                 ))}
@@ -92,7 +92,7 @@ export const Playground: FC = observer(() => {
                     key={playerChar.id}
                     name={playerChar.name}
                     onClick={handleEntityClick}
-                    health={12}
+                    health={playerChar.health}
                     maxHealth={playerChar.maxHealth}
                   />
                 ))}
