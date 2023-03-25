@@ -1,0 +1,11 @@
+{
+  "packages": [
+    "libraries/*",
+    "packages/*",
+    "tasks",
+    "serverless/*"
+  ],
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "version": "independent"
+}
