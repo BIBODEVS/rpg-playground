@@ -7,6 +7,7 @@ import { EntityCard } from '../../shared/components/CharacterCard'
 import { useStores } from '../../shared/hooks/stores'
 import { GAME_SESSION } from '../../mocks/session'
 import { MasterFooter } from './MasterFooter'
+import { PlaygroundHeader } from './Header'
 
 const headerStyle: React.CSSProperties = {
   textAlign: 'center',
@@ -21,7 +22,7 @@ const contentStyle: React.CSSProperties = {
   textAlign: 'center',
   minHeight: 120,
   lineHeight: '120px',
-  color: '#fff',
+  color: '#000',
   backgroundColor: 'transparent',
   height: '100%'
 }
@@ -35,7 +36,7 @@ const footerStyle: React.CSSProperties = {
 export const Playground: FC = observer(() => {
   const {
     modals: { openModal },
-    playground: { loading, setData, masterCharacters, playersCharacters, isMaster }
+    playground: { loading, setData, masterCharacters, playersCharacters, isMaster, stage, activeCharacter }
   } = useStores()
 
   useEffect(() => {
@@ -56,7 +57,9 @@ export const Playground: FC = observer(() => {
   return (
     <El.PlaygroundWrapper direction="vertical" style={{ width: '100%', minHeight: '100vh' }}>
       <Layout style={{ height: '100vh' }}>
-        <Header style={headerStyle}>Header</Header>
+        <Header style={headerStyle}>
+          <PlaygroundHeader />
+        </Header>
         <Layout>
           <Content style={contentStyle}>
             <El.Playfield isInvert={isMaster}>
@@ -71,6 +74,7 @@ export const Playground: FC = observer(() => {
                   />
                 ))}
               </Space>
+              {stage === 'fight' && !!activeCharacter && <Space>Ход {activeCharacter.name}</Space>}
               <Space>
                 {playersCharacters.map((playerChar) => (
                   <EntityCard
