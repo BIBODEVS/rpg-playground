@@ -12,7 +12,18 @@ export const MOCK_CHARACTERS: SessionCharacterType[] = [
     id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
     name: 'Бутер Светоносный',
     ...getHealthValue(),
-    inventory: [],
+    inventory: [
+      {
+        name: 'Меч кладенец',
+        description: 'Мощный, дерзкий, как пуля - резкий',
+        amount: 1
+      },
+      {
+        name: 'Золото',
+        description: 'Блестит',
+        amount: 30
+      }
+    ],
     type: 'player',
     initiative: 0
   },

@@ -42,9 +42,12 @@ export const Playground: FC = observer(() => {
     setData(GAME_SESSION)
   }, [])
 
-  const handleEntityClick = () => {
+  const handleEntityClick = (characterId: string) => {
     openModal({
-      name: 'CharacterInfo'
+      name: 'CharacterInfo',
+      data: {
+        characterId
+      }
     })
   }
 
@@ -71,7 +74,7 @@ export const Playground: FC = observer(() => {
                   <EntityCard
                     key={masterChar.id}
                     name={masterChar.name}
-                    onClick={handleEntityClick}
+                    onClick={() => handleEntityClick(masterChar.id)}
                     health={masterChar.health}
                     maxHealth={masterChar.maxHealth}
                   />
@@ -82,7 +85,7 @@ export const Playground: FC = observer(() => {
                   <EntityCard
                     key={playerChar.id}
                     name={playerChar.name}
-                    onClick={handleEntityClick}
+                    onClick={() => handleEntityClick(playerChar.id)}
                     health={playerChar.health}
                     maxHealth={playerChar.maxHealth}
                   />

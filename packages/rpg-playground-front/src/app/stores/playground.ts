@@ -23,6 +23,10 @@ export class Playground implements ChildStore {
     return this.characters.filter((character) => character.type === 'player')
   }
 
+  getCharacterById = (id: string) => {
+    return this.characters?.find((character) => character.id === id)
+  }
+
   setData = (session: typeof GAME_SESSION) => {
     this.stage = 'roleplay'
     this.id = session.id
