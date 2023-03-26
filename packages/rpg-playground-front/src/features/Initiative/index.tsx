@@ -7,14 +7,25 @@ import { ModalData } from '../../app/stores/modals'
 const { Title, Text } = Typography
 
 export type InitiativeProps = any
-export const Initiative: FC<ModalData<InitiativeProps>> = observer(() => {
+export const Initiative: FC<ModalData<InitiativeProps>> = observer(({ onClose }) => {
   const {
-    playground: { characters }
+    playground: { characters, initialInitiative, setInitiative, setStage }
   } = useStores()
+
+  const [form] = Form.useForm()
+
+  const handleFormSubmit = async (e: React.MouseEvent<HTMLElement>) => {
+    const newInitiative = form.getFieldsValue()
+    await form.validateFields()
+    setInitiative(newInitiative)
+    setStage('fight')
+    onClose()
+  }
+
   return (
     <Space direction="vertical">
       <Title level={3}>Определите инициативу</Title>
-      <Form>
+      <Form form={form} initialValues={initialInitiative}>
         {characters.map((character, index) => (
           <Form.Item name={character.id} rules={[{ required: true, message: 'Заполните инициативу' }]} key={index}>
             <Space>
@@ -24,7 +35,7 @@ export const Initiative: FC<ModalData<InitiativeProps>> = observer(() => {
           </Form.Item>
         ))}
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" onClick={handleFormSubmit}>
             Submit
           </Button>
         </Form.Item>

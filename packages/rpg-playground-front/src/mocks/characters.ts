@@ -29,7 +29,7 @@ export const MOCK_CHARACTERS: SessionCharacterType[] = [
   },
   {
     id: `${Math.round(Math.random() * 100 + Math.random() * 100)}`,
-    name: 'Эльф Извращенец',
+    name: 'Эльф-Извращенец',
     ...getHealthValue(),
     inventory: [],
     type: 'player',
