@@ -1,4 +1,4 @@
-import { SessionCharacterType } from '../ @types/characterType'
+import { SessionCharacterType } from '../@types/characterType'
 
 const getHealthValue = () => {
   const maxHealth = Math.round(Math.random() * 100)

@@ -6,6 +6,7 @@ import * as El from './styles'
 import { EntityCard } from '../../shared/components/CharacterCard'
 import { useStores } from '../../shared/hooks/stores'
 import { GAME_SESSION } from '../../mocks/session'
+import { MasterFooter } from './MasterFooter'
 
 const headerStyle: React.CSSProperties = {
   textAlign: 'center',
@@ -34,8 +35,7 @@ const footerStyle: React.CSSProperties = {
 export const Playground: FC = observer(() => {
   const {
     modals: { openModal },
-    playground: { loading, setData, masterCharacters, playersCharacters, setStage },
-    user: { role }
+    playground: { loading, setData, masterCharacters, playersCharacters, isMaster }
   } = useStores()
 
   useEffect(() => {
@@ -50,15 +50,6 @@ export const Playground: FC = observer(() => {
       }
     })
   }
-
-  const fightPreparingHandler = () => {
-    setStage('preparing')
-    openModal({
-      name: 'Initiative'
-    })
-  }
-
-  const isMaster = role === 'master'
 
   if (loading) return <div>Loading</div>
 
@@ -94,9 +85,7 @@ export const Playground: FC = observer(() => {
             </El.Playfield>
           </Content>
         </Layout>
-        <Footer style={footerStyle}>
-          <Button onClick={fightPreparingHandler}>Приготовиться к бою</Button>
-        </Footer>
+        <Footer style={footerStyle}>{isMaster && <MasterFooter />}</Footer>
       </Layout>
     </El.PlaygroundWrapper>
   )

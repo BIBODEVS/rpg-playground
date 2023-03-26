@@ -1,14 +1,17 @@
 import { ChildStore, RootStore } from './index'
 import { makeAutoObservable } from 'mobx'
-import { SessionCharacterType } from '../../ @types/characterType'
+import { CharacterType, SessionCharacterType } from '../../@types/characterType'
 import { GAME_SESSION } from '../../mocks/session'
+import { PlaygroundStageType } from '../../@types/playgroundTypes'
 
-type PlaygroundMode = 'roleplay' | 'preparing' | 'fight'
+type InitiativeMap = Record<CharacterType['id'], number>
 
 export class Playground implements ChildStore {
-  stage: PlaygroundMode = 'roleplay'
+  stage: PlaygroundStageType = 'roleplay'
   id: string | undefined = undefined
+  master_id: string | undefined = undefined
   characters: SessionCharacterType[] = []
+  initiative: InitiativeMap | undefined = undefined
   loading = true
 
   constructor(public root: RootStore) {
@@ -23,18 +26,27 @@ export class Playground implements ChildStore {
     return this.characters.filter((character) => character.type === 'player')
   }
 
+  get isMaster() {
+    return this.master_id === this.root.user.id
+  }
+
   getCharacterById = (id: string) => {
     return this.characters?.find((character) => character.id === id)
   }
 
   setData = (session: typeof GAME_SESSION) => {
-    this.stage = 'roleplay'
     this.id = session.id
+    this.stage = 'roleplay'
+    this.master_id = session.master_id
     this.characters = session.active_characters
     this.loading = false
   }
 
-  setStage = (newMode: PlaygroundMode) => {
+  setStage = (newMode: PlaygroundStageType) => {
     this.stage = newMode
+  }
+
+  setInitiative = (data: InitiativeMap) => {
+    this.initiative = data
   }
 }
