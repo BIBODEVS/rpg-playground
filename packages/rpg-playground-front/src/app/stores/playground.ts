@@ -1,12 +1,13 @@
 import { ChildStore, RootStore } from './index'
 import { makeAutoObservable } from 'mobx'
 import { SessionCharacterType } from '../../ @types/characterType'
-import { MOCK_CHARACTERS } from '../../mocks/characters'
+import { GAME_SESSION } from '../../mocks/session'
 
 type PlaygroundMode = 'roleplay' | 'preparing' | 'fight'
 
 export class Playground implements ChildStore {
   stage: PlaygroundMode = 'roleplay'
+  id: string | undefined = undefined
   characters: SessionCharacterType[] = []
   loading = true
 
@@ -22,9 +23,10 @@ export class Playground implements ChildStore {
     return this.characters.filter((character) => character.type === 'player')
   }
 
-  setData = () => {
+  setData = (session: typeof GAME_SESSION) => {
     this.stage = 'roleplay'
-    this.characters = MOCK_CHARACTERS
+    this.id = session.id
+    this.characters = session.active_characters
     this.loading = false
   }
 

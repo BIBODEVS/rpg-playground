@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite'
 import * as El from './styles'
 import { EntityCard } from '../../shared/components/CharacterCard'
 import { useStores } from '../../shared/hooks/stores'
+import { GAME_SESSION } from '../../mocks/session'
 
 const headerStyle: React.CSSProperties = {
   textAlign: 'center',
@@ -38,7 +39,7 @@ export const Playground: FC = observer(() => {
   } = useStores()
 
   useEffect(() => {
-    setData()
+    setData(GAME_SESSION)
   }, [])
 
   const handleEntityClick = () => {

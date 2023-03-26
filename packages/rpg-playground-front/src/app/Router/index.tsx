@@ -6,7 +6,7 @@ import { ModalSwitcher } from '../../features/ModalSwitcher'
 export const Router: FC = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/playground" element={<Playground />} />
+      <Route path="/playground/:gameId" element={<Playground />} />
     </Routes>
     <ModalSwitcher />
   </BrowserRouter>
