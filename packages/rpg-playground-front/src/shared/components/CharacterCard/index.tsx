@@ -1,29 +1,16 @@
-import { FC } from "react";
-import { Card } from "antd";
-import { HealthMark } from "../HealthMark";
+import React, { FC } from 'react'
+import { Card } from 'antd'
+import { HealthMark } from '../HealthMark'
 
 type UserCardProps = {
-  name: string;
-  health?: number;
-  maxHealth?: number;
-  onClick?: () => void;
-};
+  name: string
+  health?: number
+  maxHealth?: number
+  onClick?: () => void
+}
 
-export const EntityCard: FC<UserCardProps> = ({
-  name,
-  health,
-  maxHealth,
-  onClick,
-}) => {
-  return (
-    <Card
-      title={name}
-      style={{ width: 300, cursor: "pointer" }}
-      onClick={onClick}
-    >
-      {health && maxHealth && (
-        <HealthMark value={health} maxValue={maxHealth} />
-      )}
-    </Card>
-  );
-};
+export const EntityCard: FC<UserCardProps> = ({ name, health, maxHealth, onClick }) => (
+  <Card title={name} style={{ width: 300, cursor: 'pointer' }} onClick={onClick}>
+    {health && maxHealth && <HealthMark value={health} maxValue={maxHealth} />}
+  </Card>
+)

@@ -1,6 +1,4 @@
-import { FC } from "react";
+import React, { FC } from 'react'
 
-export type CharacterInfoProps = {};
-export const CharacterInfo: FC = () => {
-  return <div>adfasd</div>;
-};
+export type CharacterInfoProps = any
+export const CharacterInfo: FC = () => <div>adfasd</div>

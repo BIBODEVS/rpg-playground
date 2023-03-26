@@ -1,15 +1,11 @@
-import React, { FC } from "react";
-import { StoresContext } from "./context";
-import { RootStore } from "../../stores";
+import React, { FC } from 'react'
+import { StoresContext } from './context'
+import { RootStore } from '../../stores'
 
 interface StoresProviderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export const StoresProvider: FC<StoresProviderProps> = ({ children }) => {
-  return (
-    <StoresContext.Provider value={new RootStore()}>
-      {children}
-    </StoresContext.Provider>
-  );
-};
+  return <StoresContext.Provider value={new RootStore()}>{children}</StoresContext.Provider>
+}

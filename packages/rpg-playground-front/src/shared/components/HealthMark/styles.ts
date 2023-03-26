@@ -1,18 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components/macro'
 
 const getColor = (value: number, maxValue: number) => {
-  const proportion = value / maxValue;
+  const proportion = value / maxValue
   if (proportion <= 0.3) {
-    return "red";
+    return 'red'
   }
   if (proportion <= 0.6) {
-    return "yellow";
+    return 'yellow'
   }
-  return "green";
-};
+  return 'green'
+}
 
 export const HealthMark = styled.div<{ value: number; maxValue: number }>`
   width: 100%;
   height: 24px;
   background-color: ${(props) => getColor(props.value, props.maxValue)};
-`;
+`

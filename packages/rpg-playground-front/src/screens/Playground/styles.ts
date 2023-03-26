@@ -1,11 +1,11 @@
-import styled, { css } from "styled-components";
-import { Space } from "antd";
+import styled, { css } from 'styled-components/macro'
+import { Space } from 'antd'
 
 export const PlaygroundWrapper = styled(Space)`
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-`;
+`
 
 export const Playfield = styled.div<{ isInvert: boolean }>`
   height: 100%;
@@ -20,4 +20,4 @@ export const Playfield = styled.div<{ isInvert: boolean }>`
     css`
       flex-direction: column-reverse;
     `}
-`;
+`
